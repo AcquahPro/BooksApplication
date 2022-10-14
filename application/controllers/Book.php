@@ -14,7 +14,8 @@ class Book extends CI_Controller {
 	{
 		$data['books'] = $this->Book_model->get_all_books();
         $data['title'] = 'All Books';
-        $this->load->view('bookslist', $data);
+        //$this->load->view('bookslist', $data);
+        $this->template->load('template', 'contents' , 'bookslist',$data);
 	}
 
 	public function create()
@@ -22,7 +23,8 @@ class Book extends CI_Controller {
 		$data['title'] = 'Create a new Book';
 		$this->load->helper('form');
     	$this->load->library('form_validation');
-		$this->load->view('createbook');	
+		//$this->load->view('createbook');	
+		$this->template->load('template', 'contents' , 'createbook');
 	}
 
 	public function saveBook(){
@@ -38,7 +40,8 @@ class Book extends CI_Controller {
 	    else
 	    {
 	        $this->Book_model->insert();
-	        $this->load->view('book');
+	        //$this->load->view('index.php/book');
+	        redirect('/');
 	    }
 	}
 
@@ -46,7 +49,8 @@ class Book extends CI_Controller {
 		$this->load->helper('form');
     	$this->load->library('form_validation');
 		$arrData['bookForEdit'] = $this->Book_model->getBookById($id);
-		$this->load->view('editBook', $arrData);
+		//$this->load->view('editBook', $arrData);
+		$this->template->load('template', 'contents', 'editBook', $arrData);
 
 		$this->form_validation->set_rules('class', 'Class', 'required');
 	    $this->form_validation->set_rules('subject', 'Subject', 'required');
@@ -59,7 +63,7 @@ class Book extends CI_Controller {
 			if($UpdateData){
 
 				//$this->load->view('bookslist');
-				redirect('book');
+				redirect('/');
 			}
 		}
 	}
@@ -83,7 +87,7 @@ class Book extends CI_Controller {
 
 	public function delete($id){
 		$deleteData = $this->Book_model->delete($id);
-		redirect('book');
+		redirect('/');
 	}
 
 }

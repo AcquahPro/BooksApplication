@@ -2,7 +2,7 @@
 
 <?php echo validation_errors(); ?>
 
-<?php echo form_open('book/saveBook'); ?>
+<?php echo form_open('index.php/book/saveBook'); ?>
 
     <label for="class">Class</label>
     <input type="text" name="class" /><br />
