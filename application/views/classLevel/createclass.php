@@ -1,40 +1,34 @@
-<h2><?php //echo $title; ?></h2>
-
 <?php echo validation_errors(); ?>
 
-<!-- <?php echo form_open('index.php/book/saveBook'); ?>
-
-    <label for="class">Class</label>
-    <input type="text" name="class" /><br />
-
-    <label for="text">Subject</label>
-    <input type="text" name="subject" /><br />
-
-    <input type="submit" name="submit" value="Create new Book" />
-
-</form> -->
 <div class="content-wrapper">
   <section class="content-header">
     <h1>
       Add
-      <small>add a new book</small>
+      <small>add a new class</small>
     </h1>
   </section>
   <div class="row">
     <div class="col-xs-8">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">New Book</h3>
+          <h3 class="box-title">New Class</h3>
         </div>
-        <?php echo form_open('index.php/book/saveBook'); ?>
+        <?php echo form_open('index.php/classlevel/save'); ?>
             <div class="box-body">
             <div class="form-group">
-                <label for="exampleInputEmail1">Class</label>
-                <input type="text" class="form-control" name="class" placeholder="Class">
+                <label for="">Class name</label>
+                <input type="text" class="form-control" name="name" placeholder="Class Name">
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Subject</label>
-                <input type="text" class="form-control" name="subject" placeholder="Subject">
+                <label for="">Subject Category</label>
+                <!-- <input type="text" class="form-control" name="subjectcategory" placeholder="Subject Category"> -->
+                <select name="subjectcategory" class="form-control">
+                <option value="">Please Select</option>
+                  <option value="volvo">Volvo</option>
+                  <option value="saab">Saab</option>
+                  <option value="mercedes">Mercedes</option>
+                  <option value="audi">Audi</option>
+                </select>
             </div>
             <!-- <div class="form-group">
                 <label for="exampleInputFile">File input</label>

@@ -68,22 +68,22 @@ class Book extends CI_Controller {
 		}
 	}
 
-	public function updateBook($id){
-		$this->load->helper('form');
-    	$this->load->library('form_validation');
-		$this->form_validation->set_rules('class', 'Class', 'required');
-	    $this->form_validation->set_rules('subject', 'Subject', 'required');
+	// public function updateBook($id){
+	// 	$this->load->helper('form');
+    // 	$this->load->library('form_validation');
+	// 	$this->form_validation->set_rules('class', 'Class', 'required');
+	//     $this->form_validation->set_rules('subject', 'Subject', 'required');
 
-	    if ($this->form_validation->run() === FALSE)
-	    {
-	        $this->load->view('editBook');
-	    }
-	    else
-	    {
-	        $this->Book_model->update();
-	        $this->load->view('bookslist');
-	    }
-	}
+	//     if ($this->form_validation->run() === FALSE)
+	//     {
+	//         $this->load->view('editBook');
+	//     }
+	//     else
+	//     {
+	//         $this->Book_model->update();
+	//         $this->load->view('bookslist');
+	//     }
+	// }
 
 	public function delete($id){
 		$deleteData = $this->Book_model->delete($id);

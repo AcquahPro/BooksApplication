@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>AdminLTE 2 | Dashboard</title>
+    <title>Books | Application</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <link href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />    
@@ -59,27 +59,39 @@
           
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
-            <li class="header">MAIN NAVIGATION</li>
-            <li class="active treeview">
-              <a href="#">
-                <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-                <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-              </ul>
-            </li>
+            <li class="header"><a href="<?php echo base_url();?>">HOME</a></li>
+                        
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-files-o"></i>
-                <span>Layout Options</span>
-                <span class="label label-primary pull-right">4</span>
+                <span>Books</span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-                <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-                <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-                <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
+                <li><a href="<?php echo base_url();?>index.php/Book/create"><i class="fa fa-circle-o"></i>Add Book</a></li>
+                <li><a href="<?php echo base_url();?>index.php/Book"><i class="fa fa-circle-o"></i>All Books</a></li>
+              </ul>
+            </li>
+
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-files-o"></i>
+                <span>Chapter</span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url();?>index.php/Chapter/create"><i class="fa fa-circle-o"></i>Add Chapter</a></li>
+                <li><a href="<?php echo base_url();?>index.php/Chapter"><i class="fa fa-circle-o"></i>View Chapters</a></li>
+              </ul>
+            </li>
+
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-files-o"></i>
+                <span>Setup</span>
+                <!-- <span class="label label-primary pull-right">4</span> -->
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url();?>index.php/ClassLevel/create"><i class="fa fa-circle-o"></i>Add Class</a></li>
+                <li><a href="<?php echo base_url();?>index.php/Subject/create"><i class="fa fa-circle-o"></i> Add Subject</a></li>
               </ul>
             </li>
             
@@ -124,9 +136,9 @@
     <!-- iCheck -->
     <script src="<?php echo base_url(); ?>assets/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
     <!-- Slimscroll -->
-    <script src="<?php echo base_url(); ?>assets/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <!-- <script src="<?php echo base_url(); ?>assets/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script> -->
     <!-- FastClick -->
-    <script src='<?php echo base_url(); ?>assets/plugins/fastclick/fastclick.min.js'></script>
+    <!-- <script src='<?php echo base_url(); ?>assets/plugins/fastclick/fastclick.min.js'></script> -->
     <!-- AdminLTE App -->
     <script src="<?php echo base_url(); ?>assets/dist/js/app.min.js" type="text/javascript"></script>
 
