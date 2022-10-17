@@ -71,7 +71,7 @@ class Chapter extends CI_Controller {
 	    {
 	        //$this->Subject_model->insert();
 	        //$this->load->view('index.php/book');
-	        $this->create();
+	        $this->index();
 	    }	    
 	}
     public function delete($id){
@@ -84,28 +84,70 @@ class Chapter extends CI_Controller {
 		$this->load->helper('form');
     	$this->load->library('form_validation');
 		$arrData['chapterForEdit'] = $this->Chapter_model->getChapterById($id);
-		$this->template->load('template', 'contents', 'editChapter', $arrData);
+        $arrData['allclasses'] = $this->Chapter_model->getAllClasses();
+		$this->template->load('template', 'contents', 'chapter/editChapter', $arrData);
 
-		$this->form_validation->set_rules('class', 'Class', 'required');
+		$this->form_validation->set_rules('classlevel', 'Classlevel', 'required');
 	    $this->form_validation->set_rules('subject', 'Subject', 'required');
+        $this->form_validation->set_rules('chaptername', 'Chaptername', 'required');
+        $this->form_validation->set_rules('medium', 'Medium', 'required');
 
-		if($this->form_validation->run()) {
-			$class = $this->input->post('class');
-			$subject = $this->input->post('subject');
+		if ($this->form_validation->run())
+	    {
+	        $ori_filename = $_FILES['pdffile']['name'];
+            $newName = time()."".str_replace(' ','-',$ori_filename);
+            $config = [
+                'upload_path' => '././pdffiles/',
+                'allowed_types' => 'pdf',
+                'file_name' => $newName
+            ];
+            $this->load->library('upload', $config);
+            if ( ! $this->upload->do_upload('pdffile'))
+            {
+                $error = array('error' => $this->upload->display_errors());
 
-			$UpdateData = $this->Book_model->update($id,$class,$subject);
-			if($UpdateData){
+                $this->template->load('template', 'contents' , 'chapter/createchapter', $error);
+            }
+            else
+            {
+                $pdfName = $this->upload->data('file_name');
+                $data = [
+                    'classlevel' => $this->input->post('classlevel'),
+                    'subject' => $this->input->post('subject'),
+                    'chaptername' => $this->input->post('chaptername'),
+                    'medium' => $this->input->post('medium'),
+                    'pdffile' => $pdfName
+                ];
 
-				//$this->load->view('bookslist');
-				redirect('/');
-			}
-		}
+                $this->Chapter_model->update($id, $data);
+                $this->index();
+            }
+	    }
+	    else
+	    {
+	        //$this->Subject_model->insert();
+	        //$this->load->view('index.php/book');
+	        $this->create();
+	    }
 	}
 
     public function getallclasses() {
         $data['allclasses'] = $this->Chapter_model->getAllClasses();
         //var_dump($data['allclasses']);die;
     }
+
+    public function getSubjectsByClass()
+	{
+        
+        $c = $_REQUEST['q'];
+
+		// $this->load->helper('form');
+        // $classlevel = $this->input->post('classlevel');
+        
+        //$s = $classlevel[0];
+        //var_dump($classlevel);die;
+        $this->Chapter_model->getSubjectsByClass($c);
+	}
 
 }
 

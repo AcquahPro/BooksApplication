@@ -49,15 +49,42 @@ class Chapter_model extends CI_Model {
     }
     
     public function getSubjectsByClass($classlevel){
+        //$classlevel = "Class 1";
         $this->db->select('subjectCategory');
         $this->db->from('classlevel');
         $this->db->where('name', $classlevel);
-        $subCat = $this->db->get();
+        $subCat = $this->db->get()->result_array();
+   
+        $s = $subCat[0]["subjectCategory"];
+        //$s = array_shift($subCat);
+        //$s = "volvo";
+        //echo($s);die;
         $this->db->select('*');
         $this->db->from('subjects');
-        $this->db->where('subjectCategory', $subCat);
-        $subjbyclass = $this->db->get();
-        return $subjbyclass->result_array();
+        $this->db->where('subjectCategory', $s);
+        $subjbyclass = $this->db->get()->result_array();
+        //var_dump($subjbyclass->result_array());die;
+        //return $subjbyclass;
+
+        $output = '<option value="">Select Subject</option>';
+        foreach ($subjbyclass as $row) {
+            echo '<option value="' . $row['name'] . '">' . $row['name'] . '</option>';
+            //$output = '<option value="' . $row['name'] . '">' . $row['name'] . '</option>';
+            
+            //echo $output;
+        }
+        return $output;
+    }
+
+    public function update($id, $data) {
+    	    
+        $this->db->where('chapterId', $id);
+
+        if ($this->db->update('chapters', $data)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     

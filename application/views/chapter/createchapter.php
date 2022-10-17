@@ -16,7 +16,7 @@
             <div class="form-group">
                 <label for="">Class</label>
                 <!-- <input type="text" class="form-control" name="subjectcategory" placeholder="Subject Category"> -->
-                <select name="classlevel" class="form-control">
+                <select name="classlevel" id="classLevel" class="form-control" onchange="getSubjects(this.value)">
                     <option value="">Please Select</option>
                     <?php foreach($allclasses as $c) { 
                         ?>
@@ -28,12 +28,12 @@
             <div class="form-group">
                 <label for="">Subject</label>
                 <!-- <input type="text" class="form-control" name="subjectcategory" placeholder="Subject Category"> -->
-                <select name="subject" class="form-control">
+                <select name="subject" id="subject" class="form-control">
                 <option value="">Please Select</option>
-                  <option value="English">English</option>
+                  <!-- <option value="English">English</option>
                   <option value="Mathematics">Mathematics</option>
                   <option value="Science">Science</option>
-                  <option value="Hindi">Hindi</option>
+                  <option value="Hindi">Hindi</option> -->
                 </select>
                 <small><?php echo form_error('subject');?></small>
             </div>
@@ -67,3 +67,23 @@
    </div>
  </div>
 </div>
+
+<script>
+  
+      function getSubjects(selectedClass){
+        console.log(selectedClass);
+        if (selectedClass != '') {
+            $.ajax({
+                url: "<?php echo base_url(); ?>index.php/chapter/getSubjectsByClass?q="+selectedClass,
+                method: "POST",
+                data: {selectedClass:selectedClass},
+                success: function(data) {
+                    //console.log(data);
+                    $('#subject').html(data);
+                }
+            });
+        } else {
+            $('#subject').html('<option value="">Select Sub Category</option>');
+        }
+      }
+</script>

@@ -24,10 +24,10 @@
                 <!-- <input type="text" class="form-control" name="subjectcategory" placeholder="Subject Category"> -->
                 <select name="subjectcategory" class="form-control">
                 <option value="">Please Select</option>
-                  <option value="volvo">Volvo</option>
-                  <option value="saab">Saab</option>
-                  <option value="mercedes">Mercedes</option>
-                  <option value="audi">Audi</option>
+                  <option value="Category A">Category A</option>
+                  <option value="Category B">Category B</option>
+                  <option value="Category C">Category C</option>
+                  <option value="Category D">Category D</option>
                 </select>
             </div>
             <!-- <div class="form-group">
