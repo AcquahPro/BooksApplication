@@ -1,6 +1,3 @@
-<h2><?php //echo $title; ?></h2>
-
-
 <div class="content-wrapper">
   <section class="content-header">
     <h1>

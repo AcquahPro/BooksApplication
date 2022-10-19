@@ -1,21 +1,20 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Chapter extends CI_Controller {
+class ImportantQuestion extends CI_Controller {
 
 	public function __construct()
     {
         parent::__construct();
-        $this->load->model('Chapter_model');
+        $this->load->model('ImportantQuestion_model');
+        $this->load->model('ClassLevel_model');
         $this->load->helper('url_helper');
     }
 
     public function index()
 	{
-		$data['chapters'] = $this->Chapter_model->get_all_chapters();
-        //$data['title'] = 'All Books';
-        //$this->load->view('bookslist', $data);
-        $this->template->load('template', 'contents' , 'chapter/chapterlist', $data);
+		$data['importantquestions'] = $this->ImportantQuestion_model->get_all();
+        $this->template->load('template', 'contents' , 'import_ques/import_queslist', $data);
 	}
     
     public function create()
@@ -23,9 +22,9 @@ class Chapter extends CI_Controller {
 		//$data['title'] = 'Create a new Book';
 		$this->load->helper('form');
     	$this->load->library('form_validation');
-        $data['allclasses'] = $this->Chapter_model->getAllClasses();
+        $data['allclasses'] = $this->ClassLevel_model->getAllClasses();
 		//$this->load->view('createbook');	
-		$this->template->load('template', 'contents' , 'chapter/createchapter', $data);
+		$this->template->load('template', 'contents' , 'import_ques/createimportantquestion', $data);
 	}
 
     public function save(){
@@ -33,7 +32,7 @@ class Chapter extends CI_Controller {
     	$this->load->library('form_validation');
 		$this->form_validation->set_rules('classlevel', 'Classlevel', 'required');
 	    $this->form_validation->set_rules('subject', 'Subject', 'required');
-        $this->form_validation->set_rules('chaptername', 'Chaptername', 'required');
+        $this->form_validation->set_rules('questionname', 'Questionname', 'required');
         $this->form_validation->set_rules('medium', 'Medium', 'required');
 
         if ($this->form_validation->run())
@@ -50,20 +49,20 @@ class Chapter extends CI_Controller {
             {
                 $error = array('error' => $this->upload->display_errors());
 
-                $this->template->load('template', 'contents' , 'chapter/createchapter', $error);
+                $this->template->load('template', 'contents' , 'import_ques/createimportantquestion', $error);
             }
             else
             {
                 $pdfName = $this->upload->data('file_name');
                 $data = [
-                    'classlevel' => $this->input->post('classlevel'),
+                    'class' => $this->input->post('classlevel'),
                     'subject' => $this->input->post('subject'),
-                    'chaptername' => $this->input->post('chaptername'),
+                    'questionname' => $this->input->post('questionname'),
                     'medium' => $this->input->post('medium'),
                     'pdffile' => $pdfName
                 ];
 
-                $this->Chapter_model->insert($data);
+                $this->ImportantQuestion_model->insert($data);
                 $this->index();
             }
 	    }
@@ -73,25 +72,23 @@ class Chapter extends CI_Controller {
 	    }	    
 	}
     public function delete($id){
-		$deleteData = $this->Chapter_model->delete($id);
+		$deleteData = $this->ImportantQuestion_model->delete($id);
 		$this->index();
 	}
 
-    //uncompleated
     public function edit($id){
 		$this->load->helper('form');
     	$this->load->library('form_validation');
-		$arrData['chapterForEdit'] = $this->Chapter_model->getChapterById($id);
-        $arrData['allclasses'] = $this->Chapter_model->getAllClasses();
-		$this->template->load('template', 'contents', 'chapter/editChapter', $arrData);
+		$arrData['questionForEdit'] = $this->ImportantQuestion_model->getById($id);
+        $arrData['allclasses'] = $this->ClassLevel_model->getAllClasses();
+		$this->template->load('template', 'contents', 'import_ques/editimportantquestion', $arrData);
 
 		$this->form_validation->set_rules('classlevel', 'Classlevel', 'required');
 	    $this->form_validation->set_rules('subject', 'Subject', 'required');
-        $this->form_validation->set_rules('chaptername', 'Chaptername', 'required');
+        $this->form_validation->set_rules('questionname', 'Questionname', 'required');
         $this->form_validation->set_rules('medium', 'Medium', 'required');
 
-
-        if(isset($_FILES['pdffile'])){
+		if(isset($_FILES['pdffile'])){
             $ori_filename = $_FILES['pdffile']['name'];
             $newName = time()."".str_replace(' ','-',$ori_filename);
             $config = [
@@ -104,7 +101,7 @@ class Chapter extends CI_Controller {
             {
                 $error = array('error' => $this->upload->display_errors());
 
-                $this->template->load('template', 'contents', 'chapter/createchapter', $error);
+                $this->template->load('template', 'contents', 'import_ques/createimportantquestion', $error);
             }
 
 
@@ -112,21 +109,19 @@ class Chapter extends CI_Controller {
 	    if($this->form_validation->run()){
             $pdfName = $this->upload->data('file_name');
             $data = [
-                'classlevel' => $this->input->post('classlevel'),
+                'class' => $this->input->post('classlevel'),
                 'subject' => $this->input->post('subject'),
-                'chaptername' => $this->input->post('chaptername'),
+                'questionname' => $this->input->post('questionname'),
                 'medium' => $this->input->post('medium'),
                 'pdffile' => $pdfName
             ];
 
-            $this->Chapter_model->update($id, $data);
+            $this->ImportantQuestion_model->update($id, $data);
             
-            redirect(base_url().'index.php/chapter'); 
+            redirect(base_url().'index.php/importantquestion'); 
 
         }
-
-        
-    }
+	}
 
 }
 

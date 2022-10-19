@@ -8,6 +8,7 @@ class Book extends CI_Controller {
         parent::__construct();
         $this->load->model('Book_model');
         $this->load->helper('url_helper');
+		$this->load->model('ClassLevel_model');
     }
 
  	public function index()
@@ -15,16 +16,18 @@ class Book extends CI_Controller {
 		$data['books'] = $this->Book_model->get_all_books();
         $data['title'] = 'All Books';
         //$this->load->view('bookslist', $data);
-        $this->template->load('template', 'contents' , 'bookslist',$data);
+        $this->template->load('template', 'contents', 'book/bookslist', $data);
 	}
+
 
 	public function create()
 	{
 		$data['title'] = 'Create a new Book';
 		$this->load->helper('form');
     	$this->load->library('form_validation');
+		$data['allclasses'] = $this->ClassLevel_model->getAllClasses();
 		//$this->load->view('createbook');	
-		$this->template->load('template', 'contents' , 'createbook');
+		$this->template->load('template', 'contents' , 'book/createbook', $data);
 	}
 
 	public function saveBook(){
@@ -32,15 +35,16 @@ class Book extends CI_Controller {
     	$this->load->library('form_validation');
 		$this->form_validation->set_rules('class', 'Class', 'required');
 	    $this->form_validation->set_rules('subject', 'Subject', 'required');
+		//$data['allclasses'] = $this->ClassLevel_model->getAllClasses();
 
 	    if ($this->form_validation->run() === FALSE)
 	    {
-	        $this->load->view('createbook');
+	        //$this->template->load('template', 'contents' , 'book/createbook', $data);
+			$this->create();
 	    }
 	    else
 	    {
 	        $this->Book_model->insert();
-	        //$this->load->view('index.php/book');
 	        redirect('/');
 	    }
 	}
@@ -62,28 +66,11 @@ class Book extends CI_Controller {
 			$UpdateData = $this->Book_model->update($id,$class,$subject);
 			if($UpdateData){
 
-				//$this->load->view('bookslist');
 				redirect('/');
 			}
 		}
 	}
 
-	// public function updateBook($id){
-	// 	$this->load->helper('form');
-    // 	$this->load->library('form_validation');
-	// 	$this->form_validation->set_rules('class', 'Class', 'required');
-	//     $this->form_validation->set_rules('subject', 'Subject', 'required');
-
-	//     if ($this->form_validation->run() === FALSE)
-	//     {
-	//         $this->load->view('editBook');
-	//     }
-	//     else
-	//     {
-	//         $this->Book_model->update();
-	//         $this->load->view('bookslist');
-	//     }
-	// }
 
 	public function delete($id){
 		$deleteData = $this->Book_model->delete($id);

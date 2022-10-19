@@ -59,41 +59,54 @@
           
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
-            <li class="header"><a href="<?php echo base_url();?>">HOME</a></li>
+            <li class="header"><a href="<?php echo base_url();?>">RECORD</a></li>
                         
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-files-o"></i>
-                <span>Books</span>
+                <span>ADD</span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="<?php echo base_url();?>index.php/Book/create"><i class="fa fa-circle-o"></i>Add Book</a></li>
-                <li><a href="<?php echo base_url();?>index.php/Book"><i class="fa fa-circle-o"></i>All Books</a></li>
+                <li><a href="<?php echo base_url();?>index.php/Book/create"><i class="fa fa-circle-o"></i>Book</a></li>
+                <li><a href="<?php echo base_url();?>index.php/Chapter/create"><i class="fa fa-circle-o"></i>Chapter</a></li>
+                <li><a href="<?php echo base_url();?>index.php/ImportantQuestion/create"><i class="fa fa-circle-o"></i>Important Question</a></li>
+                <li><a href="<?php echo base_url();?>index.php/Note/create"><i class="fa fa-circle-o"></i>Note</a></li>
+                <li><a href="<?php echo base_url();?>index.php/Paper/create"><i class="fa fa-circle-o"></i>Papers</a></li>
+                <li><a href="<?php echo base_url();?>index.php/Topper/create"><i class="fa fa-circle-o"></i>Class Topper</a></li>
+                <li><a href="<?php echo base_url();?>index.php/Syllabus/create"><i class="fa fa-circle-o"></i>Syllabus/Blueprint</a></li>
+                <li><a href="<?php echo base_url();?>index.php/video/create"><i class="fa fa-circle-o"></i>Video</a></li>
+                <li><a href="<?php echo base_url();?>index.php/post/create"><i class="fa fa-circle-o"></i>Post</a></li>
               </ul>
             </li>
 
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-files-o"></i>
-                <span>Chapter</span>
+                <span>Show Record</span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="<?php echo base_url();?>index.php/Chapter/create"><i class="fa fa-circle-o"></i>Add Chapter</a></li>
-                <li><a href="<?php echo base_url();?>index.php/Chapter"><i class="fa fa-circle-o"></i>View Chapters</a></li>
+                <li><a href="<?php echo base_url();?>index.php/Book"><i class="fa fa-circle-o"></i>Book</a></li>
+                <li><a href="<?php echo base_url();?>index.php/Chapter"><i class="fa fa-circle-o"></i>Chapter</a></li>
+                <li><a href="<?php echo base_url();?>index.php/importantquestion"><i class="fa fa-circle-o"></i>Important Question</a></li>
+                <li><a href="<?php echo base_url();?>index.php/Note"><i class="fa fa-circle-o"></i>Note</a></li>
+                <li><a href="<?php echo base_url();?>index.php/paper"><i class="fa fa-circle-o"></i>Papers</a></li>
+                <li><a href="<?php echo base_url();?>index.php/topper"><i class="fa fa-circle-o"></i>Class Topper</a></li>
+                <li><a href="<?php echo base_url();?>index.php/syllabus"><i class="fa fa-circle-o"></i>Syllabus/Blueprint</a></li>
+                <li><a href="<?php echo base_url();?>index.php/video"><i class="fa fa-circle-o"></i>Video</a></li>
+                <li><a href="<?php echo base_url();?>index.php/post"><i class="fa fa-circle-o"></i>Post</a></li>
               </ul>
             </li>
 
-            <li class="treeview">
+            <!-- <li class="treeview">
               <a href="#">
                 <i class="fa fa-files-o"></i>
                 <span>Setup</span>
-                <!-- <span class="label label-primary pull-right">4</span> -->
               </a>
               <ul class="treeview-menu">
                 <li><a href="<?php echo base_url();?>index.php/ClassLevel/create"><i class="fa fa-circle-o"></i>Add Class</a></li>
                 <li><a href="<?php echo base_url();?>index.php/Subject/create"><i class="fa fa-circle-o"></i> Add Subject</a></li>
               </ul>
-            </li>
+            </li> -->
             
           </ul>
         </section>
