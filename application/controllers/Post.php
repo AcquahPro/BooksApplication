@@ -8,6 +8,10 @@ class Post extends CI_Controller {
         parent::__construct();
         $this->load->model('Post_model');
         $this->load->helper('url_helper');
+
+        if(!isset($_SESSION['loggedIn'])){
+			$this->template->load('authtemplate', 'contents', 'auth/login');
+		}
     }
 
     public function index()

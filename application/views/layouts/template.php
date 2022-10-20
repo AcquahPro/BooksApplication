@@ -48,6 +48,7 @@
             <span class="sr-only">Toggle navigation</span>
           </a>
           
+          
         </nav>
       </header>
       <!-- Left side column. contains the logo and sidebar -->
@@ -96,6 +97,12 @@
                 <li><a href="<?php echo base_url();?>index.php/post"><i class="fa fa-circle-o"></i>Post</a></li>
               </ul>
             </li>
+            <li class="treeview">
+              <a href="<?php echo base_url(); ?>index.php/auth/logout">
+                <span>Logout</span>
+              </a>
+            </li>
+            
 
             <!-- <li class="treeview">
               <a href="#">

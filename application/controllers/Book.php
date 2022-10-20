@@ -9,13 +9,17 @@ class Book extends CI_Controller {
         $this->load->model('Book_model');
         $this->load->helper('url_helper');
 		$this->load->model('ClassLevel_model');
+		
+		if(!isset($_SESSION['loggedIn'])){
+			$this->template->load('authtemplate', 'contents', 'auth/login');
+		}
     }
 
  	public function index()
 	{
 		$data['books'] = $this->Book_model->get_all_books();
         $data['title'] = 'All Books';
-        //$this->load->view('bookslist', $data);
+        
         $this->template->load('template', 'contents', 'book/bookslist', $data);
 	}
 

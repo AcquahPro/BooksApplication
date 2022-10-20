@@ -9,6 +9,10 @@ class ImportantQuestion extends CI_Controller {
         $this->load->model('ImportantQuestion_model');
         $this->load->model('ClassLevel_model');
         $this->load->helper('url_helper');
+
+        if(!isset($_SESSION['loggedIn'])){
+			$this->template->load('authtemplate', 'contents', 'auth/login');
+		}
     }
 
     public function index()
