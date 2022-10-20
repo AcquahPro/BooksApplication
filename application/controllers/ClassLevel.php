@@ -41,15 +41,7 @@ class ClassLevel extends CI_Controller {
 	{
         
         $c = $_REQUEST['q'];
-
-		//echo "getSubjectsByClass";die;
-
-		// $this->load->helper('form');
-        // $classlevel = $this->input->post('classlevel');
-        
-        //$s = $classlevel[0];
-        //var_dump($classlevel);die;
-        $this->ClassLevel_model->getSubjectsByClass($c);
+        $this->ClassLevel_model->getSubjectsByClassFromBooks($c);
 	}
 }
 

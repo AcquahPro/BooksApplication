@@ -56,6 +56,23 @@ class ClassLevel_model extends CI_Model {
         }
         return $output;
     }
+
+    public function getSubjectsByClassFromBooks($classlevel){
+       
+        $this->db->select('*');
+        $this->db->from('books');
+        $this->db->where('class', $classlevel);
+        $subjects = $this->db->get()->result_array();
+
+        $output = '<option value="">Select Subject</option>';
+        foreach ($subjects as $row) {
+            echo '<option value="' . $row['subject'] . '">' . $row['subject'] . '</option>';
+            //$output = '<option value="' . $row['name'] . '">' . $row['name'] . '</option>';
+            
+            //echo $output;
+        }
+        return $output;
+    }
 }
 
 ?>
