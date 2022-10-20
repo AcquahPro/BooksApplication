@@ -34,29 +34,29 @@ class Syllabus extends CI_Controller {
         $this->form_validation->set_rules('medium', 'Medium', 'required');
         $this->form_validation->set_rules('type', 'Type', 'required');
 
-        if ($this->form_validation->run())
+        
+        if ($this->form_validation->run() === FALSE)
 	    {
-	        $ori_filename = $_FILES['pdffile']['name'];
-            $newName = time()."".str_replace(' ','-',$ori_filename);
+			$this->create();
+	    }
+        else
+        {
+            $newName = time();
             $config = [
                 'upload_path' => '././pdffiles/',
                 'allowed_types' => 'pdf',
                 'file_name' => $newName
             ];
             $this->load->library('upload', $config);
-            if ( ! $this->upload->do_upload('pdffile'))
-            {
-                $error = array('error' => $this->upload->display_errors());
-
-                $this->template->load('template', 'contents' , 'syllabus/createsyllabus', $error);
-            }
-            else
+            
+            
+            if($this->upload->do_upload('pdffile'))
             {
                 $pdfName = $this->upload->data('file_name');
                 $data = [
                     'class' => $this->input->post('classlevel'),
                     'subject' => $this->input->post('subject'),
-                    'syllabusname' => $this->input->post('syllabusname'),
+                    'name' => $this->input->post('syllabusname'),
                     'medium' => $this->input->post('medium'),
                     'type' => $this->input->post('type'),
                     'pdffile' => $pdfName
@@ -65,66 +65,84 @@ class Syllabus extends CI_Controller {
                 $this->Syllabus_model->insert($data);
                 $this->index();
             }
-	    }
-	    else
-	    {
-	        $this->index();
-	    }	    
+            else
+            {
+                $error = array('error' => $this->upload->display_errors());
+                $error['allclasses'] = $this->ClassLevel_model->getAllClasses();
+
+                $this->template->load('template', 'contents', 'syllabus/createsyllabus', $error);
+            }
+          
+        }
+
 	}
+
+
     public function delete($id){
-		$this->Topper_model->delete($id);
+		$this->Syllabus_model->delete($id);
 		$this->index();
 	}
 
     public function edit($id){
 		$this->load->helper('form');
     	$this->load->library('form_validation');
-		$arrData['syllabusedit'] = $this->Topper_model->getById($id);
+		$arrData['syllabusedit'] = $this->Syllabus_model->getById($id);
         $arrData['allclasses'] = $this->ClassLevel_model->getAllClasses();
 		$this->template->load('template', 'contents', 'syllabus/editsyllabus', $arrData);
 
 		$this->form_validation->set_rules('classlevel', 'Classlevel', 'required');
 	    $this->form_validation->set_rules('subject', 'Subject', 'required');
-        $this->form_validation->set_rules('syllabusname', 'syllabusname', 'required');
+        $this->form_validation->set_rules('name', 'name', 'required');
         $this->form_validation->set_rules('medium', 'Medium', 'required');
         $this->form_validation->set_rules('type', 'Type', 'required');
 
-		if ($this->form_validation->run())
-	    {
-	        $ori_filename = $_FILES['pdffile']['name'];
-            $newName = time()."".str_replace(' ','-',$ori_filename);
-            $config = [
-                'upload_path' => '././pdffiles/',
-                'allowed_types' => 'pdf',
-                'file_name' => $newName
-            ];
-            $this->load->library('upload', $config);
-            if ( ! $this->upload->do_upload('pdffile'))
-            {
-                $error = array('error' => $this->upload->display_errors());
+		
+        if($this->form_validation->run() === FALSE){
+            //$this->template->load('template', 'contents', 'paper/editpaper', $arrData);
+        }
 
-                $this->template->load('template', 'contents', 'syllabus/editsyllabus', $error);
-            }
-            else
-            {
-                $pdfName = $this->upload->data('file_name');
+        else{
+           
+                $newName = time();
+                $config = [
+                    'upload_path' => '././pdffiles/',
+                    'allowed_types' => 'pdf',
+                    'file_name' => $newName
+                ];
+                $this->load->library('upload', $config);
+                
+                if($this->upload->do_upload('pdffile')){
+                    $pdfName = $this->upload->data('file_name');
+
+                    $data = [
+                        'class' => $this->input->post('classlevel'),
+                        'subject' => $this->input->post('subject'),
+                        'name' => $this->input->post('name'),
+                        'medium' => $this->input->post('medium'),
+                        'type' => $this->input->post('type'),
+                        'pdffile' => $pdfName
+                    ];
+    
+                    $this->Syllabus_model->update($id, $data);
+                    //$this->index(); 
+                    redirect(base_url().'index.php/Syllabus'); 
+                }
+
+            else{
                 $data = [
                     'class' => $this->input->post('classlevel'),
                     'subject' => $this->input->post('subject'),
-                    'syllabusname' => $this->input->post('syllabusname'),
+                    'name' => $this->input->post('name'),
                     'medium' => $this->input->post('medium'),
-                    'type' => $this->input->post('type'),
-                    'pdffile' => $pdfName
+                    'type' => $this->input->post('type')
                 ];
 
                 $this->Syllabus_model->update($id, $data);
-                $this->index();
+                //$this->index();
+                redirect(base_url().'index.php/Syllabus'); 
             }
-	    }
-	    else
-	    {
-	        $this->template->load('template', 'contents', 'syllabus/editsyllabus', $arrData);
-	    }
+            
+        }
 	}
 
 }

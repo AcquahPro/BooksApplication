@@ -29,43 +29,56 @@ class Paper extends CI_Controller {
         
         $this->load->helper('form');
     	$this->load->library('form_validation');
-		$this->form_validation->set_rules('classLevel', 'Classlevel', 'required');
+		$this->form_validation->set_rules('classlevel', 'Classlevel', 'required');
 	    $this->form_validation->set_rules('subject', 'Subject', 'required');
         $this->form_validation->set_rules('papername', 'Papername', 'required');
         $this->form_validation->set_rules('medium', 'Medium', 'required');
         $this->form_validation->set_rules('year', 'Year', 'required');
         $this->form_validation->set_rules('types', 'Type', 'required');
         
-        if ($this->form_validation->run() === FALSE || !isset($_FILES['pdffile']))
+        if ($this->form_validation->run() === FALSE)
 	    {
 			$this->create();
 	    }
         else
         {
-            $ori_filename = $_FILES['pdffile']['name'];
-            $newName = time()."".str_replace(' ','-',$ori_filename);
+            //$ori_filename = $_FILES['pdffile']['name'];
+            //$newName = time()."".str_replace(' ','-',$ori_filename);
+            $newName = time();
             $config = [
                 'upload_path' => '././pdffiles/',
                 'allowed_types' => 'pdf',
                 'file_name' => $newName
             ];
             $this->load->library('upload', $config);
-            $this->upload->do_upload('pdffile');
             
+            
+            if($this->upload->do_upload('pdffile'))
+            {
+                $pdfName = $this->upload->data('file_name');
+                $data = [
+                    'class' => $this->input->post('classlevel'),
+                    'subject' => $this->input->post('subject'),
+                    'papername' => $this->input->post('papername'),
+                    'medium' => $this->input->post('medium'),
+                    'year' => $this->input->post('year'),
+                    'type' => $this->input->post('types'),
+                    'pdffile' => $pdfName
+                ];
+                
+                $this->Paper_model->insert($data);
+                $this->index();
+            }
+            else
+            {
+                $data = array('error' => $this->upload->display_errors());
+                $data['allclasses'] = $this->ClassLevel_model->getAllClasses();
+
+                $this->template->load('template', 'contents', 'paper/createpaper', $data);
+            }
+
         
-            $pdfName = $this->upload->data('file_name');
-            $data = [
-                'class' => $this->input->post('classlevel'),
-                'subject' => $this->input->post('subject'),
-                'papername' => $this->input->post('papername'),
-                'medium' => $this->input->post('medium'),
-                'year' => $this->input->post('year'),
-                'type' => $this->input->post('types'),
-                'pdffile' => $pdfName
-            ];
             
-            $this->Paper_model->insert($data);
-            $this->index();
         }
   
         
@@ -73,7 +86,7 @@ class Paper extends CI_Controller {
 
 
     public function delete($id){
-		$deleteData = $this->Paper_model->delete($id);
+		$this->Paper_model->delete($id);
 		$this->index();
 	}
 
@@ -84,48 +97,61 @@ class Paper extends CI_Controller {
         $arrData['allclasses'] = $this->ClassLevel_model->getAllClasses();
 		$this->template->load('template', 'contents', 'paper/editpaper', $arrData);
 
-		$this->form_validation->set_rules('classLevel', 'Classlevel', 'required');
+		$this->form_validation->set_rules('classlevel', 'Classlevel', 'required');
 	    $this->form_validation->set_rules('subject', 'Subject', 'required');
         $this->form_validation->set_rules('papername', 'Papername', 'required');
         $this->form_validation->set_rules('medium', 'Medium', 'required');
         $this->form_validation->set_rules('year', 'Year', 'required');
         $this->form_validation->set_rules('types', 'Type', 'required');
 
-        if(isset($_FILES['pdffile'])){
-            $ori_filename = $_FILES['pdffile']['name'];
-            $newName = time()."".str_replace(' ','-',$ori_filename);
-            $config = [
-                'upload_path' => '././pdffiles/',
-                'allowed_types' => 'pdf',
-                'file_name' => $newName
-            ];
-            $this->load->library('upload', $config);
-            if ( ! $this->upload->do_upload('pdffile'))
-            {
-                $error = array('error' => $this->upload->display_errors());
+        if($this->form_validation->run() === FALSE){
+            //$this->template->load('template', 'contents', 'paper/editpaper', $arrData);
+        }
 
-                $this->template->load('template', 'contents', 'note/createnote', $error);
+        else{
+           
+                //$ori_filename = $_FILES['pdffile']['name'];
+                $newName = time();
+                $config = [
+                    'upload_path' => '././pdffiles/',
+                    'allowed_types' => 'pdf',
+                    'file_name' => $newName
+                ];
+                $this->load->library('upload', $config);
+                
+                if($this->upload->do_upload('pdffile')){
+                    $pdfName = $this->upload->data('file_name');
+
+                    $data = [
+                        'class' => $this->input->post('classlevel'),
+                        'subject' => $this->input->post('subject'),
+                        'papername' => $this->input->post('papername'),
+                        'medium' => $this->input->post('medium'),
+                        'year' => $this->input->post('year'),
+                        'type' => $this->input->post('types'),
+                        'pdffile' => $pdfName
+                    ];
+        
+                    $this->Paper_model->update($id, $data);
+                    redirect(base_url().'index.php/Paper'); 
+                }
+
+            else{
+                $data = [
+                    'class' => $this->input->post('classlevel'),
+                    'subject' => $this->input->post('subject'),
+                    'papername' => $this->input->post('papername'),
+                    'medium' => $this->input->post('medium'),
+                    'year' => $this->input->post('year'),
+                    'type' => $this->input->post('types')
+                ];
+    
+                $this->Paper_model->update($id, $data);
+                redirect(base_url().'index.php/Paper'); 
             }
-
-
+            
         }
-	    if($this->form_validation->run()){
-            $pdfName = $this->upload->data('file_name');
-            $data = [
-                'class' => $this->input->post('classlevel'),
-                'subject' => $this->input->post('subject'),
-                'papername' => $this->input->post('papername'),
-                'medium' => $this->input->post('medium'),
-                'year' => $this->input->post('year'),
-                'type' => $this->input->post('types'),
-                'pdffile' => $pdfName
-            ];
 
-            $this->Note_model->update($id, $data);
-            //$this->index();
-            redirect(base_url().'index.php/Paper'); 
-
-        }
 	    
 	}
 

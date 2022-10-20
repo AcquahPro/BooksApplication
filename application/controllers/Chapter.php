@@ -7,6 +7,7 @@ class Chapter extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('Chapter_model');
+        $this->load->model('ClassLevel_model');
         $this->load->helper('url_helper');
     }
 
@@ -36,23 +37,23 @@ class Chapter extends CI_Controller {
         $this->form_validation->set_rules('chaptername', 'Chaptername', 'required');
         $this->form_validation->set_rules('medium', 'Medium', 'required');
 
-        if ($this->form_validation->run())
+
+        if ($this->form_validation->run() === FALSE)
 	    {
-	        $ori_filename = $_FILES['pdffile']['name'];
-            $newName = time()."".str_replace(' ','-',$ori_filename);
+			$this->create();
+	    }
+        else
+        {
+            $newName = time();
             $config = [
                 'upload_path' => '././pdffiles/',
                 'allowed_types' => 'pdf',
                 'file_name' => $newName
             ];
             $this->load->library('upload', $config);
-            if ( ! $this->upload->do_upload('pdffile'))
-            {
-                $error = array('error' => $this->upload->display_errors());
-
-                $this->template->load('template', 'contents' , 'chapter/createchapter', $error);
-            }
-            else
+            
+            
+            if($this->upload->do_upload('pdffile'))
             {
                 $pdfName = $this->upload->data('file_name');
                 $data = [
@@ -66,18 +67,24 @@ class Chapter extends CI_Controller {
                 $this->Chapter_model->insert($data);
                 $this->index();
             }
-	    }
-	    else
-	    {
-	        $this->index();
-	    }	    
+            else
+            {
+                $data = array('error' => $this->upload->display_errors());
+                $data['allclasses'] = $this->ClassLevel_model->getAllClasses();
+                $this->template->load('template', 'contents', 'chapter/createchapter', $data);
+            }
+         
+        }
+	    
 	}
+
+
+
     public function delete($id){
 		$deleteData = $this->Chapter_model->delete($id);
 		$this->index();
 	}
 
-    //uncompleated
     public function edit($id){
 		$this->load->helper('form');
     	$this->load->library('form_validation');
@@ -91,38 +98,48 @@ class Chapter extends CI_Controller {
         $this->form_validation->set_rules('medium', 'Medium', 'required');
 
 
-        if(isset($_FILES['pdffile'])){
-            $ori_filename = $_FILES['pdffile']['name'];
-            $newName = time()."".str_replace(' ','-',$ori_filename);
-            $config = [
-                'upload_path' => '././pdffiles/',
-                'allowed_types' => 'pdf',
-                'file_name' => $newName
-            ];
-            $this->load->library('upload', $config);
-            if ( ! $this->upload->do_upload('pdffile'))
-            {
-                $error = array('error' => $this->upload->display_errors());
-
-                $this->template->load('template', 'contents', 'chapter/createchapter', $error);
-            }
-
-
+        if($this->form_validation->run() === FALSE){
+            //$this->template->load('template', 'contents', 'paper/editpaper', $arrData);
         }
-	    if($this->form_validation->run()){
-            $pdfName = $this->upload->data('file_name');
-            $data = [
-                'classlevel' => $this->input->post('classlevel'),
-                'subject' => $this->input->post('subject'),
-                'chaptername' => $this->input->post('chaptername'),
-                'medium' => $this->input->post('medium'),
-                'pdffile' => $pdfName
-            ];
 
-            $this->Chapter_model->update($id, $data);
+        else{
+                $newName = time();
+                $config = [
+                    'upload_path' => '././pdffiles/',
+                    'allowed_types' => 'pdf',
+                    'file_name' => $newName
+                ];
+                $this->load->library('upload', $config);
+                
+                if($this->upload->do_upload('pdffile')){
+                    $pdfName = $this->upload->data('file_name');
+
+                    $data = [
+                        'classlevel' => $this->input->post('classlevel'),
+                        'subject' => $this->input->post('subject'),
+                        'chaptername' => $this->input->post('chaptername'),
+                        'medium' => $this->input->post('medium'),
+                        'pdffile' => $pdfName
+                    ];
+        
+                    $this->Chapter_model->update($id, $data);
+                    
+                    redirect(base_url().'index.php/chapter');  
+                }
+
+            else{
+                $data = [
+                    'classlevel' => $this->input->post('classlevel'),
+                    'subject' => $this->input->post('subject'),
+                    'chaptername' => $this->input->post('chaptername'),
+                    'medium' => $this->input->post('medium')
+                ];
+    
+                $this->Chapter_model->update($id, $data);
+                    
+                redirect(base_url().'index.php/chapter'); 
+            }
             
-            redirect(base_url().'index.php/chapter'); 
-
         }
 
         

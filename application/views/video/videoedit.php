@@ -1,3 +1,4 @@
+
 <div class="content-wrapper">
   <section class="content-header">
     <h1>
@@ -11,7 +12,7 @@
         <div class="box-header">
           <h3 class="box-title"></h3>
         </div>
-        <?php echo form_open_multipart('index.php/chapter/edit/'.$videoedit[0]['id']);?>
+        <?php echo form_open_multipart('index.php/video/edit/'.$videoedit[0]['id']);?>
             <div class="box-body">
                 <div class="form-group">
                     <label for="">Class</label>
@@ -44,11 +45,6 @@
                     <option value="Hindi">Hindi</option>
                     </select>
                     <small><?php echo form_error('medium');?></small>
-                </div>
-                <div class="form-group">
-                    <label for="">Upload Pdf</label>
-                    <input type="file" name="pdffile" class="form-control"/>
-                    <small><?php if(isset($error)){echo $error;}?></small>
                 </div>
                 <div class="form-group">
                     <label for="">Video Link</label>

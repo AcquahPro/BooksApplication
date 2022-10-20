@@ -22,7 +22,7 @@
                                 <option value="<?php echo $c['name']; ?>"><?php echo $c['name']; ?></option>
                         <?php } ?>
                     </select>
-                    <small><?php echo form_error('classLevel');?></small>
+                    <small><?php echo form_error('classlevel');?></small>
                 </div>
                 <div class="form-group">
                     <label for="">Subject</label>
@@ -44,6 +44,11 @@
                     <option value="Hindi">Hindi</option>
                     </select>
                     <small><?php echo form_error('medium');?></small>
+                </div>
+                <div class="form-group">
+                    <label for="">Year</label>
+                    <input type="text" class="form-control" name="year" value="<?php echo $topperedit[0]['year']; ?>">
+                    <small><?php echo form_error('year');?></small>
                 </div>
                 <div class="form-group">
                     <label for="">Upload Pdf</label>

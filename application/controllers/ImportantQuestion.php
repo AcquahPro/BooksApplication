@@ -35,23 +35,23 @@ class ImportantQuestion extends CI_Controller {
         $this->form_validation->set_rules('questionname', 'Questionname', 'required');
         $this->form_validation->set_rules('medium', 'Medium', 'required');
 
-        if ($this->form_validation->run())
+
+        if ($this->form_validation->run() === FALSE)
 	    {
-	        $ori_filename = $_FILES['pdffile']['name'];
-            $newName = time()."".str_replace(' ','-',$ori_filename);
+			$this->create();
+	    }
+        else
+        {
+            $newName = time();
             $config = [
                 'upload_path' => '././pdffiles/',
                 'allowed_types' => 'pdf',
                 'file_name' => $newName
             ];
             $this->load->library('upload', $config);
-            if ( ! $this->upload->do_upload('pdffile'))
-            {
-                $error = array('error' => $this->upload->display_errors());
-
-                $this->template->load('template', 'contents' , 'import_ques/createimportantquestion', $error);
-            }
-            else
+            
+            
+            if($this->upload->do_upload('pdffile'))
             {
                 $pdfName = $this->upload->data('file_name');
                 $data = [
@@ -65,14 +65,20 @@ class ImportantQuestion extends CI_Controller {
                 $this->ImportantQuestion_model->insert($data);
                 $this->index();
             }
-	    }
-	    else
-	    {
-	        $this->index();
-	    }	    
+            else
+            {
+                $data = array('error' => $this->upload->display_errors());
+                $data['allclasses'] = $this->ClassLevel_model->getAllClasses();
+
+                $this->template->load('template', 'contents', 'import_ques/createimportantquestion', $data);
+            }       
+            
+        }
+      
 	}
+
     public function delete($id){
-		$deleteData = $this->ImportantQuestion_model->delete($id);
+		$this->ImportantQuestion_model->delete($id);
 		$this->index();
 	}
 
@@ -87,6 +93,55 @@ class ImportantQuestion extends CI_Controller {
 	    $this->form_validation->set_rules('subject', 'Subject', 'required');
         $this->form_validation->set_rules('questionname', 'Questionname', 'required');
         $this->form_validation->set_rules('medium', 'Medium', 'required');
+
+
+        if($this->form_validation->run() === FALSE){
+            //$this->template->load('template', 'contents', 'paper/editpaper', $arrData);
+        }
+
+        else{
+           
+                $newName = time();
+                $config = [
+                    'upload_path' => '././pdffiles/',
+                    'allowed_types' => 'pdf',
+                    'file_name' => $newName
+                ];
+                $this->load->library('upload', $config);
+                
+                if($this->upload->do_upload('pdffile')){
+                    $pdfName = $this->upload->data('file_name');
+
+                    $data = [
+                        'class' => $this->input->post('classlevel'),
+                        'subject' => $this->input->post('subject'),
+                        'questionname' => $this->input->post('questionname'),
+                        'medium' => $this->input->post('medium'),
+                        'pdffile' => $pdfName
+                    ];
+        
+                    $this->ImportantQuestion_model->update($id, $data);
+                    
+                    redirect(base_url().'index.php/importantquestion'); 
+                }
+
+            else{
+                $data = [
+                    'class' => $this->input->post('classlevel'),
+                    'subject' => $this->input->post('subject'),
+                    'questionname' => $this->input->post('questionname'),
+                    'medium' => $this->input->post('medium')
+                    
+                ];
+    
+                $this->ImportantQuestion_model->update($id, $data);
+                
+                redirect(base_url().'index.php/importantquestion');  
+            }
+            
+        }
+
+
 
 		if(isset($_FILES['pdffile'])){
             $ori_filename = $_FILES['pdffile']['name'];

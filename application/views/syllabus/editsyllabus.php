@@ -16,7 +16,7 @@
             <div class="form-group">
                 <label for="">Class</label>
                 <select name="classlevel" class="form-control" onchange="getSubjects(this.value)" >
-                    <option value="<?php echo $syllabusedit[0]['classLevel']; ?>"><?php echo $syllabusedit[0]['class']; ?></option>
+                    <option value="<?php echo $syllabusedit[0]['class']; ?>"><?php echo $syllabusedit[0]['class']; ?></option>
                     <?php foreach($allclasses as $c) { 
                         ?>
                             <option value="<?php echo $c['name']; ?>"><?php echo $c['name']; ?></option>
@@ -39,7 +39,6 @@
             <div class="form-group">
                 <label for="">Type</label>
                 <select name="type" class="form-control">
-                <option value="">Please Select</option>
                 <option value="<?php echo $syllabusedit[0]['type']; ?>"><?php echo $syllabusedit[0]['type']; ?></option>
                   <option value="Syllabus">Syllabus</option>
                   <option value="Blueprint">Blueprint</option>

@@ -30,7 +30,7 @@
                 <td><?php echo $t['class']; ?></td>
                 <td><?php echo $t['medium']; ?></td>
                 <td><?php echo $t['year']; ?></td>
-                <td><a href="<?php echo base_url().'pdffiles/'. $i['pdffile'];?>" target="_blank">Show</a></td>
+                <td><a href="<?php echo base_url().'pdffiles/'. $t['pdffile'];?>" target="_blank">Show</a></td>
                 <td>
                   <a href="<?php echo base_url();?>index.php/topper/edit/<?php echo $t['id'];?>" class="btn btn-primary">Edit</a>
                   <a href="<?php echo base_url();?>index.php/topper/delete/<?php echo $t['id'];?>" class="btn btn-danger" onclick = "return confirm('Are you sure?')">Delete</a>

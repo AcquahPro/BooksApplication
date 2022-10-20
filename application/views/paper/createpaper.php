@@ -54,7 +54,7 @@
             <div class="form-group">
                 <label for="">Type</label>
                 <input type="text" class="form-control" name="types" placeholder="Type">
-                <small><?php echo form_error('type');?></small>
+                <small><?php echo form_error('types');?></small>
             </div>
             <div class="form-group">
                 <label for="">Upload Pdf</label>

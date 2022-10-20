@@ -19,19 +19,19 @@
               <th>Name</th>
               <th>Class</th>
               <th>Medium</th>
-              <th>File</th>
+              <th>Link</th>
               <th>Action</th>
             </tr>
-            <?php foreach ($videos as $t): ?>
+            <?php foreach ($videos as $v): ?>
               <tr>
-                <td><?php echo $t['subject']; ?></td>
-                <td><?php echo $t['videoname']; ?></td>
-                <td><?php echo $t['class']; ?></td>
-                <td><?php echo $t['medium']; ?></td>
-                <td><a href="<?php echo base_url().'pdffiles/'. $i['pdffile'];?>" target="_blank">Show</a></td>
+                <td><?php echo $v['subject']; ?></td>
+                <td><?php echo $v['videoname']; ?></td>
+                <td><?php echo $v['class']; ?></td>
+                <td><?php echo $v['medium']; ?></td>
+                <td><?php echo $v['videolink']; ?></td>
                 <td>
-                  <a href="<?php echo base_url();?>index.php/video/edit/<?php echo $t['id'];?>" class="btn btn-primary">Edit</a>
-                  <a href="<?php echo base_url();?>index.php/video/delete/<?php echo $t['id'];?>" class="btn btn-danger" onclick = "return confirm('Are you sure?')">Delete</a>
+                  <a href="<?php echo base_url();?>index.php/video/edit/<?php echo $v['id'];?>" class="btn btn-primary">Edit</a>
+                  <a href="<?php echo base_url();?>index.php/video/delete/<?php echo $v['id'];?>" class="btn btn-danger" onclick = "return confirm('Are you sure?')">Delete</a>
                 </td>   
    
               </tr>    

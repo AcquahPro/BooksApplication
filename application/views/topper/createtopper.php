@@ -15,7 +15,7 @@
             <div class="box-body">
             <div class="form-group">
                 <label for="">Class</label>
-                <select name="classlevel" id="classLevel" class="form-control" onchange="getSubjects(this.value)">
+                <select name="classlevel" class="form-control" onchange="getSubjects(this.value)">
                     <option value="">Please Select</option>
                     <?php foreach($allclasses as $c) { 
                         ?>
@@ -73,7 +73,7 @@
       function getSubjects(selectedClass){
         if (selectedClass != '') {
             $.ajax({
-                url: "<?php echo base_url(); ?>index.php/chapter/getSubjectsByClass?q="+selectedClass,
+                url: "<?php echo base_url(); ?>index.php/classlevel/getSubjectsByClass?q="+selectedClass,
                 method: "POST",
                 data: {selectedClass:selectedClass},
                 success: function(data) {

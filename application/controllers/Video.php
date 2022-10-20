@@ -22,7 +22,7 @@ class Video extends CI_Controller {
 		$this->load->helper('form');
     	$this->load->library('form_validation');
         $data['allclasses'] = $this->ClassLevel_model->getAllClasses();
-		$this->template->load('template', 'contents' , 'video/videolist', $data);
+		$this->template->load('template', 'contents' , 'video/createvideo', $data);
 	}
 
     public function save(){
@@ -35,9 +35,13 @@ class Video extends CI_Controller {
         $this->form_validation->set_rules('medium', 'Medium', 'required');
         $this->form_validation->set_rules('videolink', 'Videolink', 'required');
 
-        if ($this->form_validation->run())
+        
+        if ($this->form_validation->run() === FALSE)
 	    {
-
+			$this->create();
+	    }
+        else
+        {
             $data = [
                 'class' => $this->input->post('classlevel'),
                 'subject' => $this->input->post('subject'),
@@ -49,24 +53,22 @@ class Video extends CI_Controller {
 
             $this->Video_model->insert($data);
             $this->index();
+            
         }
-	    
-	    else
-	    {
-	        $this->template->load('template', 'contents' , 'video/videolist', $data);
-	    }	    
 	}
+
+
     public function delete($id){
-		$this->Topper_model->delete($id);
+		$this->Video_model->delete($id);
 		$this->index();
 	}
 
     public function edit($id){
 		$this->load->helper('form');
     	$this->load->library('form_validation');
-		$arrData['videoedit'] = $this->Topper_model->getById($id);
+		$arrData['videoedit'] = $this->Video_model->getById($id);
         $arrData['allclasses'] = $this->ClassLevel_model->getAllClasses();
-		$this->template->load('template', 'contents', 'topper/edittopper', $arrData);
+		$this->template->load('template', 'contents', 'video/videoedit', $arrData);
 
 		$this->form_validation->set_rules('classlevel', 'Classlevel', 'required');
 	    $this->form_validation->set_rules('subject', 'Subject', 'required');
@@ -74,9 +76,14 @@ class Video extends CI_Controller {
         $this->form_validation->set_rules('medium', 'Medium', 'required');
         $this->form_validation->set_rules('videolink', 'Videolink', 'required');
 
-		if ($this->form_validation->run())
-	    {
-	        
+
+        if($this->form_validation->run() === FALSE){
+            //$this->template->load('template', 'contents', 'paper/editpaper', $arrData);
+        }
+
+        else{
+           
+             
             $data = [
                 'class' => $this->input->post('classlevel'),
                 'subject' => $this->input->post('subject'),
@@ -86,14 +93,12 @@ class Video extends CI_Controller {
             ];
 
             $this->Video_model->update($id, $data);
-            $this->index();
+            redirect(base_url().'index.php/Video'); 
             
-	    }
-	    else
-	    {
-	        $this->template->load('template', 'contents', 'topper/edittopper', $arrData);
-	    }
-	}
+            
+        }
+
+    }
 
 }
 

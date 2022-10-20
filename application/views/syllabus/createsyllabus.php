@@ -22,7 +22,7 @@
                             <option value="<?php echo $c['name']; ?>"><?php echo $c['name']; ?></option>
                     <?php } ?>
                 </select>
-                <small><?php echo form_error('class');?></small>
+                <small><?php echo form_error('classlevel');?></small>
             </div>
             <div class="form-group">
                 <label for="">Subject</label>

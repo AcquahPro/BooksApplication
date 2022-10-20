@@ -33,23 +33,22 @@ class Note extends CI_Controller {
         $this->form_validation->set_rules('notename', 'Notename', 'required');
         $this->form_validation->set_rules('medium', 'Medium', 'required');
 
-        if ($this->form_validation->run())
+        if ($this->form_validation->run() === FALSE)
 	    {
-	        $ori_filename = $_FILES['pdffile']['name'];
-            $newName = time()."".str_replace(' ','-',$ori_filename);
+			$this->create();
+	    }
+        else
+        {
+            $newName = time();
             $config = [
                 'upload_path' => '././pdffiles/',
                 'allowed_types' => 'pdf',
                 'file_name' => $newName
             ];
             $this->load->library('upload', $config);
-            if ( ! $this->upload->do_upload('pdffile'))
-            {
-                $error = array('error' => $this->upload->display_errors());
-
-                $this->template->load('template', 'contents' , 'note/createnote', $error);
-            }
-            else
+            
+            
+            if($this->upload->do_upload('pdffile'))
             {
                 $pdfName = $this->upload->data('file_name');
                 $data = [
@@ -63,18 +62,24 @@ class Note extends CI_Controller {
                 $this->Note_model->insert($data);
                 $this->index();
             }
-	    }
-	    else
-	    {
-	        $this->index();
-	    }	    
+            else
+            {
+                $data = array('error' => $this->upload->display_errors());
+                $data['allclasses'] = $this->ClassLevel_model->getAllClasses();
+
+                $this->template->load('template', 'contents', 'note/createnote', $data);
+            }
+   
+        }   
+        
 	}
+
+
     public function delete($id){
-		$deleteData = $this->Note_model->delete($id);
+		$this->Note_model->delete($id);
 		$this->index();
 	}
 
-    //check
     public function edit($id){
 		$this->load->helper('form');
     	$this->load->library('form_validation');
@@ -87,41 +92,51 @@ class Note extends CI_Controller {
         $this->form_validation->set_rules('notename', 'Notename', 'required');
         $this->form_validation->set_rules('medium', 'Medium', 'required');
 
-        if(isset($_FILES['pdffile'])){
-            $ori_filename = $_FILES['pdffile']['name'];
-            $newName = time()."".str_replace(' ','-',$ori_filename);
-            $config = [
-                'upload_path' => '././pdffiles/',
-                'allowed_types' => 'pdf',
-                'file_name' => $newName
-            ];
-            $this->load->library('upload', $config);
-            if ( ! $this->upload->do_upload('pdffile'))
-            {
-                $error = array('error' => $this->upload->display_errors());
-
-                $this->template->load('template', 'contents', 'note/createnote', $error);
-            }
-
-
-        }
-	    if($this->form_validation->run()){
-            $pdfName = $this->upload->data('file_name');
-            $data = [
-                'class' => $this->input->post('classlevel'),
-                'subject' => $this->input->post('subject'),
-                'notename' => $this->input->post('notename'),
-                'medium' => $this->input->post('medium'),
-                //'pdffile' => $pdfName
-            ];
-
-            $this->Note_model->update($id, $data);
-            //$this->index();
-            redirect(base_url().'index.php/Note'); 
-
-        }
-
         
+        if($this->form_validation->run() === FALSE){
+            //$this->template->load('template', 'contents', 'paper/editpaper', $arrData);
+        }
+
+        else{
+
+                $newName = time();
+                $config = [
+                    'upload_path' => '././pdffiles/',
+                    'allowed_types' => 'pdf',
+                    'file_name' => $newName
+                ];
+                $this->load->library('upload', $config);
+                
+                if($this->upload->do_upload('pdffile')){
+                    $pdfName = $this->upload->data('file_name');
+
+                    $data = [
+                        'class' => $this->input->post('classlevel'),
+                        'subject' => $this->input->post('subject'),
+                        'notename' => $this->input->post('notename'),
+                        'medium' => $this->input->post('medium'),
+                        'pdffile' => $pdfName
+                    ];
+        
+                    $this->Note_model->update($id, $data);
+                    //$this->index();
+                    redirect(base_url().'index.php/Note');
+                }
+
+            else{
+                $data = [
+                    'class' => $this->input->post('classlevel'),
+                    'subject' => $this->input->post('subject'),
+                    'notename' => $this->input->post('notename'),
+                    'medium' => $this->input->post('medium')
+                ];
+    
+                $this->Note_model->update($id, $data);
+                //$this->index();
+                redirect(base_url().'index.php/Note');
+            }
+            
+        }  
 	    
 	}
 
