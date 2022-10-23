@@ -19,12 +19,12 @@ class Auth extends CI_Controller {
 	}
 
     public function welcome(){
-        //$this->template->load('template', 'contents', 'auth/welcome');
-        //$this->load->library('session');
 		if(isset($_SESSION['loggedIn'])){
+            //echo "loggedin";die;
 			$this->template->load('template', 'contents', 'auth/welcome');
 		}
         else{
+            //echo "NOT loggedin";die;
             $this->login();
         }
     }
@@ -49,7 +49,8 @@ class Auth extends CI_Controller {
             if(count($result)>0){
                 $newdata  = array('id'=>$result[0]->id, 'username'=>$result[0]->username, 'logged_in' => TRUE);
 
-                $this->session->set_userdata('loggedIn', $newdata);
+                //$this->session->set_userdata('loggedIn', $newdata);
+                $this->session->set_userdata('loggedIn',TRUE);
 
                 $this->welcome();
 
@@ -103,5 +104,4 @@ class Auth extends CI_Controller {
     }
 
 
-	
 }

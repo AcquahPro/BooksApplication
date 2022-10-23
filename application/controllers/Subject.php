@@ -8,8 +8,9 @@ class Subject extends CI_Controller {
         parent::__construct();
         $this->load->model('Subject_model');
         $this->load->helper('url_helper');
-		if(!isset($_SESSION['loggedIn'])){
-			$this->template->load('authtemplate', 'contents', 'auth/login');
+
+		if (!isset($this->session->userdata['loggedIn'])) {
+			redirect(base_url().'index.php/auth/login'); 
 		}
     }
 

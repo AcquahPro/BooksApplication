@@ -9,8 +9,9 @@ class Video extends CI_Controller {
         $this->load->model('Video_model');
         $this->load->model('ClassLevel_model');
         $this->load->helper('url_helper');
-        if(!isset($_SESSION['loggedIn'])){
-			$this->template->load('authtemplate', 'contents', 'auth/login');
+
+        if (!isset($this->session->userdata['loggedIn'])) {
+			redirect(base_url().'index.php/auth/login'); 
 		}
     }
 
