@@ -11,7 +11,7 @@
         <div class="box-header">
           <h3 class="box-title">Edit Book</h3>
         </div>
-        <?php echo form_open_multipart('index.php/book/edit/'.$bookForEdit[0]['bookId']);?>
+        <?php echo form_open('index.php/book/edit/'.$bookForEdit[0]['bookId']);?>
             <div class="box-body">
             <div class="form-group">
                 <label for="">Class</label>

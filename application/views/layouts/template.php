@@ -40,7 +40,7 @@
       
       <header class="main-header">
         <!-- Logo -->
-        <a href="index2.html" class="logo"><b>Books</b>App</a>
+        <a href="<?php echo base_url().'index.php/auth/welcome';?>" class="logo"><b>Books</b>App</a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
           <!-- Sidebar toggle button-->
@@ -60,7 +60,7 @@
           
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
-            <li class="header"><a href="<?php echo base_url();?>">RECORD</a></li>
+            <li class="header"><a href="<?php echo base_url().'index.php/auth/welcome';?>">RECORD</a></li>
                         
             <li class="treeview">
               <a href="#">

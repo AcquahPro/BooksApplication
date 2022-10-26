@@ -50,7 +50,7 @@ class Book extends CI_Controller {
 	    else
 	    {
 	        $this->Book_model->insert();
-	        redirect('/');
+	        $this->template->load('template', 'contents', 'auth/welcome');
 	    }
 	}
 
@@ -70,16 +70,15 @@ class Book extends CI_Controller {
 
 			$UpdateData = $this->Book_model->update($id,$class,$subject);
 			if($UpdateData){
-
-				redirect('/');
+				redirect(base_url().'index.php/book');				
 			}
 		}
 	}
 
 
 	public function delete($id){
-		$deleteData = $this->Book_model->delete($id);
-		redirect('/');
+		$this->Book_model->delete($id);
+		redirect(base_url().'index.php/auth/welcome');
 	}
 
 }
