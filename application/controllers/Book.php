@@ -11,7 +11,7 @@ class Book extends CI_Controller {
 		$this->load->model('ClassLevel_model');
 
 		if (!isset($this->session->userdata['loggedIn'])) {
-			redirect(base_url().'index.php/auth/login'); 
+			redirect(base_url()); 
 		}		
 
     }

@@ -19,12 +19,10 @@ class Auth extends CI_Controller {
 	}
 
     public function welcome(){
-		if(isset($_SESSION['loggedIn'])){
-            //echo "loggedin";die;
+        if (isset($this->session->userdata['loggedIn'])) {
 			$this->template->load('template', 'contents', 'auth/welcome');
-		}
+		}	
         else{
-            //echo "NOT loggedin";die;
             $this->login();
         }
     }
@@ -67,8 +65,8 @@ class Auth extends CI_Controller {
 
     public function register(){
         $this->load->helper('form');
-        if(isset($_SESSION['loggedIn'])){
-			$this->template->load('template', 'contents', 'auth/register');
+        if (!isset($this->session->userdata['loggedIn'])) {
+			redirect(base_url()); 
 		}
         else{
             $this->login();
@@ -76,6 +74,9 @@ class Auth extends CI_Controller {
     }
 
     public function adduser(){
+        if (!isset($this->session->userdata['loggedIn'])) {
+			redirect(base_url()); 
+		}
         $this->load->helper('form');
     	$this->load->library('form_validation');
 		$this->form_validation->set_rules('username', 'username', 'trim|required');

@@ -10,7 +10,7 @@ class ClassLevel extends CI_Controller {
         $this->load->helper('url_helper');
 
 		if (!isset($this->session->userdata['loggedIn'])) {
-			redirect(base_url().'index.php/auth/login'); 
+			redirect(base_url()); 
 		}
     }
 
