@@ -53,3 +53,6 @@ $route['default_controller'] = 'auth';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['about'] = 'welcome/about';
+$route['api/book/list'] = 'api/bookapi/index';
+$route['api/book/getbyid/?id='] = 'api/bookapi/getbyid';
+
