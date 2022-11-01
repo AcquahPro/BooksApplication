@@ -40,7 +40,7 @@
       
       <header class="main-header">
         <!-- Logo -->
-        <a href="<?php echo base_url().'index.php/auth/welcome';?>" class="logo"><b>Books</b>App</a>
+        <a href="<?php echo base_url().'auth/welcome';?>" class="logo"><b>Books</b>App</a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
           <!-- Sidebar toggle button-->
@@ -60,7 +60,7 @@
           
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
-            <li class="header"><a href="<?php echo base_url().'index.php/auth/welcome';?>">RECORD</a></li>
+            <li class="header"><a href="<?php echo base_url().'auth/welcome';?>">RECORD</a></li>
                         
             <li class="treeview">
               <a href="#">
@@ -68,15 +68,15 @@
                 <span>ADD</span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="<?php echo base_url();?>index.php/Book/create"><i class="fa fa-circle-o"></i>Book</a></li>
-                <li><a href="<?php echo base_url();?>index.php/Chapter/create"><i class="fa fa-circle-o"></i>Chapter</a></li>
-                <li><a href="<?php echo base_url();?>index.php/ImportantQuestion/create"><i class="fa fa-circle-o"></i>Important Question</a></li>
-                <li><a href="<?php echo base_url();?>index.php/Note/create"><i class="fa fa-circle-o"></i>Note</a></li>
-                <li><a href="<?php echo base_url();?>index.php/Paper/create"><i class="fa fa-circle-o"></i>Papers</a></li>
-                <li><a href="<?php echo base_url();?>index.php/Topper/create"><i class="fa fa-circle-o"></i>Class Topper</a></li>
-                <li><a href="<?php echo base_url();?>index.php/Syllabus/create"><i class="fa fa-circle-o"></i>Syllabus/Blueprint</a></li>
-                <li><a href="<?php echo base_url();?>index.php/video/create"><i class="fa fa-circle-o"></i>Video</a></li>
-                <li><a href="<?php echo base_url();?>index.php/post/create"><i class="fa fa-circle-o"></i>Post</a></li>
+                <li><a href="<?php echo base_url();?>Book/create"><i class="fa fa-circle-o"></i>Book</a></li>
+                <li><a href="<?php echo base_url();?>Chapter/create"><i class="fa fa-circle-o"></i>Chapter</a></li>
+                <li><a href="<?php echo base_url();?>ImportantQuestion/create"><i class="fa fa-circle-o"></i>Important Question</a></li>
+                <li><a href="<?php echo base_url();?>Note/create"><i class="fa fa-circle-o"></i>Note</a></li>
+                <li><a href="<?php echo base_url();?>Paper/create"><i class="fa fa-circle-o"></i>Papers</a></li>
+                <li><a href="<?php echo base_url();?>Topper/create"><i class="fa fa-circle-o"></i>Class Topper</a></li>
+                <li><a href="<?php echo base_url();?>Syllabus/create"><i class="fa fa-circle-o"></i>Syllabus/Blueprint</a></li>
+                <li><a href="<?php echo base_url();?>video/create"><i class="fa fa-circle-o"></i>Video</a></li>
+                <li><a href="<?php echo base_url();?>post/create"><i class="fa fa-circle-o"></i>Post</a></li>
               </ul>
             </li>
 
@@ -86,19 +86,19 @@
                 <span>Show Record</span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="<?php echo base_url();?>index.php/Book"><i class="fa fa-circle-o"></i>Book</a></li>
-                <li><a href="<?php echo base_url();?>index.php/Chapter"><i class="fa fa-circle-o"></i>Chapter</a></li>
-                <li><a href="<?php echo base_url();?>index.php/importantquestion"><i class="fa fa-circle-o"></i>Important Question</a></li>
-                <li><a href="<?php echo base_url();?>index.php/Note"><i class="fa fa-circle-o"></i>Note</a></li>
-                <li><a href="<?php echo base_url();?>index.php/paper"><i class="fa fa-circle-o"></i>Papers</a></li>
-                <li><a href="<?php echo base_url();?>index.php/topper"><i class="fa fa-circle-o"></i>Class Topper</a></li>
-                <li><a href="<?php echo base_url();?>index.php/syllabus"><i class="fa fa-circle-o"></i>Syllabus/Blueprint</a></li>
-                <li><a href="<?php echo base_url();?>index.php/video"><i class="fa fa-circle-o"></i>Video</a></li>
-                <li><a href="<?php echo base_url();?>index.php/post"><i class="fa fa-circle-o"></i>Post</a></li>
+                <li><a href="<?php echo base_url();?>Book"><i class="fa fa-circle-o"></i>Book</a></li>
+                <li><a href="<?php echo base_url();?>Chapter"><i class="fa fa-circle-o"></i>Chapter</a></li>
+                <li><a href="<?php echo base_url();?>importantquestion"><i class="fa fa-circle-o"></i>Important Question</a></li>
+                <li><a href="<?php echo base_url();?>Note"><i class="fa fa-circle-o"></i>Note</a></li>
+                <li><a href="<?php echo base_url();?>paper"><i class="fa fa-circle-o"></i>Papers</a></li>
+                <li><a href="<?php echo base_url();?>topper"><i class="fa fa-circle-o"></i>Class Topper</a></li>
+                <li><a href="<?php echo base_url();?>syllabus"><i class="fa fa-circle-o"></i>Syllabus/Blueprint</a></li>
+                <li><a href="<?php echo base_url();?>video"><i class="fa fa-circle-o"></i>Video</a></li>
+                <li><a href="<?php echo base_url();?>ipost"><i class="fa fa-circle-o"></i>Post</a></li>
               </ul>
             </li>
             <li class="treeview">
-              <a href="<?php echo base_url(); ?>index.php/auth/logout">
+              <a href="<?php echo base_url(); ?>auth/logout">
                 <span>Logout</span>
               </a>
             </li>

@@ -126,7 +126,7 @@ class ImportantQuestion extends CI_Controller {
         
                     $this->ImportantQuestion_model->update($id, $data);
                     
-                    redirect(base_url().'index.php/importantquestion'); 
+                    redirect(base_url().'importantquestion'); 
                 }
 
             else{
@@ -140,7 +140,7 @@ class ImportantQuestion extends CI_Controller {
     
                 $this->ImportantQuestion_model->update($id, $data);
                 
-                redirect(base_url().'index.php/importantquestion');  
+                redirect(base_url().'importantquestion');  
             }
             
         }
@@ -177,7 +177,7 @@ class ImportantQuestion extends CI_Controller {
 
             $this->ImportantQuestion_model->update($id, $data);
             
-            redirect(base_url().'index.php/importantquestion'); 
+            redirect(base_url().'importantquestion'); 
 
         }
 	}

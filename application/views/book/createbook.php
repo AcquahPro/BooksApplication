@@ -11,7 +11,7 @@
         <div class="box-header">
           <h3 class="box-title">New Book</h3>
         </div>
-        <?php echo form_open('index.php/book/saveBook'); ?>
+        <?php echo form_open('book/saveBook'); ?>
             <div class="box-body">
               <div class="form-group">
                   <label for="">Class</label>

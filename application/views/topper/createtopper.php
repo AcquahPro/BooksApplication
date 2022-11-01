@@ -11,7 +11,7 @@
         <div class="box-header">
           <h3 class="box-title">New Topper</h3>
         </div>
-        <?php echo form_open_multipart('index.php/topper/save');?>
+        <?php echo form_open_multipart('topper/save');?>
             <div class="box-body">
             <div class="form-group">
                 <label for="">Class</label>
@@ -73,7 +73,7 @@
       function getSubjects(selectedClass){
         if (selectedClass != '') {
             $.ajax({
-                url: "<?php echo base_url(); ?>index.php/classlevel/getSubjectsByClass?q="+selectedClass,
+                url: "<?php echo base_url(); ?>classlevel/getSubjectsByClass?q="+selectedClass,
                 method: "POST",
                 data: {selectedClass:selectedClass},
                 success: function(data) {

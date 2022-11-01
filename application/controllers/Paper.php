@@ -137,7 +137,7 @@ class Paper extends CI_Controller {
                     ];
         
                     $this->Paper_model->update($id, $data);
-                    redirect(base_url().'index.php/Paper'); 
+                    redirect(base_url().'Paper'); 
                 }
 
             else{
@@ -151,7 +151,7 @@ class Paper extends CI_Controller {
                 ];
     
                 $this->Paper_model->update($id, $data);
-                redirect(base_url().'index.php/Paper'); 
+                redirect(base_url().'Paper'); 
             }
             
         }

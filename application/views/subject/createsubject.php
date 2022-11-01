@@ -13,7 +13,7 @@
         <div class="box-header">
           <h3 class="box-title">New Subject</h3>
         </div>
-        <?php echo form_open('index.php/subject/save'); ?>
+        <?php echo form_open('subject/save'); ?>
             <div class="box-body">
             <div class="form-group">
                 <label for="">Subject name</label>

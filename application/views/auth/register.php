@@ -5,7 +5,7 @@
       </div>
       <div class="login-box-body">
         <p class="login-box-msg">Register </p>
-        <?php echo form_open('index.php/auth/adduser'); ?>
+        <?php echo form_open('auth/adduser'); ?>
           <div class="form-group has-feedback">
             <input type="text" name="username" class="form-control" placeholder="Username"/>
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>

@@ -11,7 +11,7 @@
         <div class="box-header">
           <h3 class="box-title">New Chapter</h3>
         </div>
-        <?php echo form_open_multipart('index.php/chapter/save');?>
+        <?php echo form_open_multipart('chapter/save');?>
             <div class="box-body">
             <div class="form-group">
                 <label for="">Class</label>
@@ -74,7 +74,7 @@
 
         if (selectedClass != '') {
             $.ajax({
-                url: "<?php echo base_url(); ?>index.php/classlevel/getSubjectsByClass?q="+selectedClass,
+                url: "<?php echo base_url(); ?>classlevel/getSubjectsByClass?q="+selectedClass,
                 method: "POST",
                 data: {selectedClass:selectedClass},
                 success: function(data) {

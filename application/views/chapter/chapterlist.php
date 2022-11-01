@@ -34,8 +34,8 @@
                     <a href="<?php echo base_url().'pdffiles/'. $chapter['pdffile'];?>" target="_blank">Show</a>
                 </td>
                 <td>
-                  <a href="<?php echo base_url();?>index.php/Chapter/edit/<?php echo $chapter['chapterId'];?>" class="btn btn-primary">Edit</a>
-                  <a href="<?php echo base_url();?>index.php/Chapter/delete/<?php echo $chapter['chapterId'];?>" class="btn btn-danger" onclick = "return confirm('Are you sure?')">Delete</a>
+                  <a href="<?php echo base_url();?>Chapter/edit/<?php echo $chapter['chapterId'];?>" class="btn btn-primary">Edit</a>
+                  <a href="<?php echo base_url();?>Chapter/delete/<?php echo $chapter['chapterId'];?>" class="btn btn-danger" onclick = "return confirm('Are you sure?')">Delete</a>
                 </td>   
    
               </tr>    

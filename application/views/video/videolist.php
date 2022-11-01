@@ -30,8 +30,8 @@
                 <td><?php echo $v['medium']; ?></td>
                 <td><?php echo $v['videolink']; ?></td>
                 <td>
-                  <a href="<?php echo base_url();?>index.php/video/edit/<?php echo $v['id'];?>" class="btn btn-primary">Edit</a>
-                  <a href="<?php echo base_url();?>index.php/video/delete/<?php echo $v['id'];?>" class="btn btn-danger" onclick = "return confirm('Are you sure?')">Delete</a>
+                  <a href="<?php echo base_url();?>video/edit/<?php echo $v['id'];?>" class="btn btn-primary">Edit</a>
+                  <a href="<?php echo base_url();?>video/delete/<?php echo $v['id'];?>" class="btn btn-danger" onclick = "return confirm('Are you sure?')">Delete</a>
                 </td>   
    
               </tr>    

@@ -23,8 +23,8 @@
                 <td><?php echo $book['class']; ?></td>
                 <td><?php echo $book['subject']; ?></td>
                 <td>
-                  <a href="<?php echo base_url();?>index.php/Book/edit/<?php echo $book['bookId'];?>" class="btn btn-primary">Edit</a>
-                  <a href="<?php echo base_url();?>index.php/Book/delete/<?php echo $book['bookId'];?>" class="btn btn-danger" onclick = "return confirm('Are you sure?')">Delete</a>
+                  <a href="<?php echo base_url();?>Book/edit/<?php echo $book['bookId'];?>" class="btn btn-primary">Edit</a>
+                  <a href="<?php echo base_url();?>Book/delete/<?php echo $book['bookId'];?>" class="btn btn-danger" onclick = "return confirm('Are you sure?')">Delete</a>
                 </td>   
    
               </tr>    

@@ -12,7 +12,7 @@
         <div class="box-header">
           <h3 class="box-title"></h3>
         </div>
-        <?php echo form_open_multipart('index.php/video/edit/'.$videoedit[0]['id']);?>
+        <?php echo form_open_multipart('video/edit/'.$videoedit[0]['id']);?>
             <div class="box-body">
                 <div class="form-group">
                     <label for="">Class</label>

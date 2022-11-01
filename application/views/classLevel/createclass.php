@@ -13,7 +13,7 @@
         <div class="box-header">
           <h3 class="box-title">New Class</h3>
         </div>
-        <?php echo form_open('index.php/classlevel/save'); ?>
+        <?php echo form_open('classlevel/save'); ?>
             <div class="box-body">
             <div class="form-group">
                 <label for="">Class name</label>

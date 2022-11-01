@@ -5,8 +5,7 @@
       </div>
       <div class="login-box-body">
         <p class="login-box-msg">Log in </p>
-        <?php //echo form_open('index.php/auth/login'); ?>
-        <form action="<?php echo base_url('index.php/auth/login') ?>" method="POST">
+        <form action="<?php echo base_url('auth/login') ?>" method="POST">
           <div class="form-group has-feedback">
             <input type="text" name="username" class="form-control" placeholder="Username"/>
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>

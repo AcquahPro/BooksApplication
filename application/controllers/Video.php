@@ -97,7 +97,7 @@ class Video extends CI_Controller {
             ];
 
             $this->Video_model->update($id, $data);
-            redirect(base_url().'index.php/Video'); 
+            redirect(base_url().'Video'); 
             
             
         }

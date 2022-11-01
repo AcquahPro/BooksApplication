@@ -129,7 +129,7 @@ class Syllabus extends CI_Controller {
     
                     $this->Syllabus_model->update($id, $data);
                     //$this->index(); 
-                    redirect(base_url().'index.php/Syllabus'); 
+                    redirect(base_url().'Syllabus'); 
                 }
 
             else{
@@ -143,7 +143,7 @@ class Syllabus extends CI_Controller {
 
                 $this->Syllabus_model->update($id, $data);
                 //$this->index();
-                redirect(base_url().'index.php/Syllabus'); 
+                redirect(base_url().'Syllabus'); 
             }
             
         }

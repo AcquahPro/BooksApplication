@@ -31,8 +31,8 @@
                 <td><?php echo $s['type']; ?></td>
                 <td><a href="<?php echo base_url().'pdffiles/'. $s['pdffile'];?>" target="_blank">Show</a></td>
                 <td>
-                  <a href="<?php echo base_url();?>index.php/syllabus/edit/<?php echo $s['id'];?>" class="btn btn-primary">Edit</a>
-                  <a href="<?php echo base_url();?>index.php/syllabus/delete/<?php echo $s['id'];?>" class="btn btn-danger" onclick = "return confirm('Are you sure?')">Delete</a>
+                  <a href="<?php echo base_url();?>syllabus/edit/<?php echo $s['id'];?>" class="btn btn-primary">Edit</a>
+                  <a href="<?php echo base_url();?>syllabus/delete/<?php echo $s['id'];?>" class="btn btn-danger" onclick = "return confirm('Are you sure?')">Delete</a>
                 </td>   
    
               </tr>    

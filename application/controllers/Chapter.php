@@ -128,7 +128,7 @@ class Chapter extends CI_Controller {
         
                     $this->Chapter_model->update($id, $data);
                     
-                    redirect(base_url().'index.php/chapter');  
+                    redirect(base_url().'chapter');  
                 }
 
             else{
@@ -141,7 +141,7 @@ class Chapter extends CI_Controller {
     
                 $this->Chapter_model->update($id, $data);
                     
-                redirect(base_url().'index.php/chapter'); 
+                redirect(base_url().'chapter'); 
             }
             
         }

@@ -11,7 +11,7 @@
         <div class="box-header">
           <h3 class="box-title"></h3>
         </div>
-        <?php echo form_open('index.php/post/edit/'.$postedit[0]['id']);?>
+        <?php echo form_open('post/edit/'.$postedit[0]['id']);?>
             <div class="box-body">
             
             <div class="form-group">

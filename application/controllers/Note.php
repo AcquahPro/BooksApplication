@@ -124,7 +124,7 @@ class Note extends CI_Controller {
         
                     $this->Note_model->update($id, $data);
                     //$this->index();
-                    redirect(base_url().'index.php/Note');
+                    redirect(base_url().'Note');
                 }
 
             else{
@@ -137,7 +137,7 @@ class Note extends CI_Controller {
     
                 $this->Note_model->update($id, $data);
                 //$this->index();
-                redirect(base_url().'index.php/Note');
+                redirect(base_url().'Note');
             }
             
         }  

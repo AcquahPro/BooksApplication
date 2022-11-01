@@ -88,7 +88,7 @@ class Post extends CI_Controller {
                   
 
             $this->Post_model->update($id, $data);
-            redirect(base_url().'index.php/Post'); 
+            redirect(base_url().'Post'); 
             
             
         }

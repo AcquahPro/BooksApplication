@@ -26,8 +26,8 @@
                 <td><?php echo $p['description']; ?></td>
                 <td><?php echo $p['posturl']; ?></td>
                 <td>
-                  <a href="<?php echo base_url();?>index.php/post/edit/<?php echo $p['id'];?>" class="btn btn-primary">Edit</a>
-                  <a href="<?php echo base_url();?>index.php/post/delete/<?php echo $p['id'];?>" class="btn btn-danger" onclick = "return confirm('Are you sure?')">Delete</a>
+                  <a href="<?php echo base_url();?>post/edit/<?php echo $p['id'];?>" class="btn btn-primary">Edit</a>
+                  <a href="<?php echo base_url();?>post/delete/<?php echo $p['id'];?>" class="btn btn-danger" onclick = "return confirm('Are you sure?')">Delete</a>
                 </td>   
    
               </tr>    

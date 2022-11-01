@@ -130,7 +130,7 @@ class Topper extends CI_Controller {
     
                     $this->Topper_model->update($id, $data);
                     //$this->index();
-                    redirect(base_url().'index.php/topper'); 
+                    redirect(base_url().'topper'); 
                 }
 
             else{
@@ -144,7 +144,7 @@ class Topper extends CI_Controller {
 
                 $this->Topper_model->update($id, $data);
                 //$this->index();
-                redirect(base_url().'index.php/Topper'); 
+                redirect(base_url().'Topper'); 
             }
             
         }

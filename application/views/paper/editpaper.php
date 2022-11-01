@@ -11,7 +11,7 @@
         <div class="box-header">
           <h3 class="box-title"></h3>
         </div>
-        <?php echo form_open_multipart('index.php/paper/edit/'.$paperedit[0]['id']);?>
+        <?php echo form_open_multipart('paper/edit/'.$paperedit[0]['id']);?>
             <div class="box-body">
                 <div class="form-group">
                     <label for="">Class</label>
@@ -75,7 +75,7 @@
     function getSubjects(selectedClass){
         if (selectedClass != '') {
             $.ajax({
-                url: "<?php echo base_url(); ?>index.php/classlevel/getSubjectsByClass?q="+selectedClass,
+                url: "<?php echo base_url(); ?>classlevel/getSubjectsByClass?q="+selectedClass,
                 method: "POST",
                 data: {selectedClass:selectedClass},
                 success: function(data) {

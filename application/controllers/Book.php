@@ -22,6 +22,7 @@ class Book extends CI_Controller {
         $data['title'] = 'All Books';
         
         $this->template->load('template', 'contents', 'book/bookslist', $data);
+		//$this->load->view('book/bookslist');	
 	}
 
 
@@ -70,7 +71,7 @@ class Book extends CI_Controller {
 
 			$UpdateData = $this->Book_model->update($id,$class,$subject);
 			if($UpdateData){
-				redirect(base_url().'index.php/book');				
+				redirect(base_url().'book');				
 			}
 		}
 	}
@@ -78,7 +79,7 @@ class Book extends CI_Controller {
 
 	public function delete($id){
 		$this->Book_model->delete($id);
-		redirect(base_url().'index.php/auth/welcome');
+		redirect(base_url().'auth/welcome');
 	}
 
 }

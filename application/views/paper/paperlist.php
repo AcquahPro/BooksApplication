@@ -33,8 +33,8 @@
                 <td><?php echo $p['type']; ?></td>
                 <td><a href="<?php echo base_url().'pdffiles/'. $p['pdffile'];?>" target="_blank">Show</a></td>
                 <td>
-                  <a href="<?php echo base_url();?>index.php/paper/edit/<?php echo $p['id'];?>" class="btn btn-primary">Edit</a>
-                  <a href="<?php echo base_url();?>index.php/paper/delete/<?php echo $p['id'];?>" class="btn btn-danger" onclick = "return confirm('Are you sure?')">Delete</a>
+                  <a href="<?php echo base_url();?>paper/edit/<?php echo $p['id'];?>" class="btn btn-primary">Edit</a>
+                  <a href="<?php echo base_url();?>paper/delete/<?php echo $p['id'];?>" class="btn btn-danger" onclick = "return confirm('Are you sure?')">Delete</a>
                 </td>   
    
               </tr>    

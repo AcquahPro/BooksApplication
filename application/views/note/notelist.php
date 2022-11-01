@@ -29,8 +29,8 @@
                 <td><?php echo $n['medium']; ?></td>
                 <td><a href="<?php echo base_url().'pdffiles/'. $n['pdffile'];?>" target="_blank">Show</a></td>
                 <td>
-                  <a href="<?php echo base_url();?>index.php/note/edit/<?php echo $n['id'];?>" class="btn btn-primary">Edit</a>
-                  <a href="<?php echo base_url();?>index.php/note/delete/<?php echo $n['id'];?>" class="btn btn-danger" onclick = "return confirm('Are you sure?')">Delete</a>
+                  <a href="<?php echo base_url();?>note/edit/<?php echo $n['id'];?>" class="btn btn-primary">Edit</a>
+                  <a href="<?php echo base_url();?>note/delete/<?php echo $n['id'];?>" class="btn btn-danger" onclick = "return confirm('Are you sure?')">Delete</a>
                 </td>   
    
               </tr>    
