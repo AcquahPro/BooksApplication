@@ -45,7 +45,10 @@ class ClassLevel extends CI_Controller {
 	{
         
         $c = $_REQUEST['q'];
-        $this->ClassLevel_model->getSubjectsByClassFromBooks($c);
+		
+	$newstr = str_replace('%', ' ', $c);
+	$nclass = substr($newstr, 0, -2);
+        $this->ClassLevel_model->getSubjectsByClassFromBooks($nclass);
 	}
 }
 
